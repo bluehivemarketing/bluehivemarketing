@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0363d5">
+
+  <title>Blue Hive Marketing | Onboarding Form</title>
+
+  <style>
+    :root {
+      --blue: #0363d5;
+      --dark-blue: #024fae;
+      --light-blue: #eaf3ff;
+      --white: #ffffff;
+      --gray: #8f8f8f;
+      --text: #172033;
+      --muted: #687386;
+      --border: #dce3ec;
+      --background: #f4f7fb;
+      --danger: #c62828;
+      --success: #157347;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.5;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(100% - 24px, 950px);
+      margin: 25px auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 25px;
+      color: white;
+      background: linear-gradient(135deg, var(--blue), #0b78ef);
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(3, 99, 213, 0.2);
+    }
+
+    .logo-box {
+      width: 85px;
+      height: 85px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 8px;
+      background: white;
+      border-radius: 16px;
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 34px;
+    }
+
+    .header p {
+      margin: 6px 0 0;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .progress-box {
+      position: sticky;
+      top: 8px;
+      z-index: 20;
+      margin: 18px 0;
+      padding: 13px 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      box-shadow: 0 8px 20px rgba(20, 48, 86, 0.08);
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .progress-track {
+      height: 8px;
+      overflow: hidden;
+      background: #e3e9f1;
+      border-radius: 20px;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: var(--blue);
+      border-radius: 20px;
+      transition: width 0.25s ease;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(20, 48, 86, 0.06);
+    }
+
+    .section-title {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .number {
+      width: 35px;
+      height: 35px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--blue);
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 19px;
+    }
+
+    .section-title p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label,
+    legend {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 13px;
+      color: var(--text);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(3, 99, 213, 0.12);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    fieldset {
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .option {
+      position: relative;
+    }
+
+    .option input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .option label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 76px;
+      min-height: 42px;
+      padding: 8px 15px;
+      cursor: pointer;
+      color: var(--muted);
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+
+    .option input:checked + label {
+      color: var(--blue);
+      background: var(--light-blue);
+      border-color: var(--blue);
+    }
+
+    .conditional {
+      display: none;
+      grid-column: 1 / -1;
+      padding: 17px;
+      background: #f8fbff;
+      border: 1px dashed #a8c9ed;
+      border-radius: 12px;
+    }
+
+    .conditional.show {
+      display: block;
+    }
+
+    .warning {
+      grid-column: 1 / -1;
+      padding: 14px;
+      color: #684a00;
+      background: #fff7e6;
+      border: 1px solid #efc66f;
+      border-radius: 11px;
+      font-size: 13px;
+    }
+
+    .password-box {
+      position: relative;
+    }
+
+    .password-box input {
+      padding-right: 75px;
+    }
+
+    .password-button {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+      padding: 6px 8px;
+      color: var(--blue);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .checklist {
+      display: grid;
+      gap: 12px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      padding: 14px;
+      background: #fbfcfe;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+    }
+
+    .check-item input {
+      width: 21px;
+      height: 21px;
+      min-height: 21px;
+      flex-shrink: 0;
+      accent-color: var(--blue);
+    }
+
+    .submit-area {
+      display: grid;
+      gap: 12px;
+      padding-bottom: 30px;
+    }
+
+    .submit-button {
+      min-height: 55px;
+      color: white;
+      background: var(--blue);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 10px 25px rgba(3, 99, 213, 0.24);
+    }
+
+    .submit-button:hover {
+      background: var(--dark-blue);
+    }
+
+    .submit-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      display: none;
+      padding: 14px;
+      border-radius: 11px;
+      font-weight: bold;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.success {
+      color: var(--success);
+      background: #eaf8f0;
+      border: 1px solid #a8dbc0;
+    }
+
+    .status.error {
+      color: var(--danger);
+      background: #fff0f0;
+      border: 1px solid #efb0b0;
+    }
+
+    .footer {
+      margin: 0;
+      color: var(--gray);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .hidden-field {
+      position: absolute;
+      left: -10000px;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 16px, 950px);
+        margin-top: 12px;
+      }
+
+      .header {
+        padding: 18px;
+      }
+
+      .logo-box {
+        width: 65px;
+        height: 65px;
+      }
+
+      .header h1 {
+        font-size: 25px;
+      }
+
+      .header p {
+        font-size: 14px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full,
+      .conditional,
+      .warning {
+        grid-column: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        display: block;
+      }
+
+      .logo-box {
+        margin-bottom: 13px;
+      }
+
+      .options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .option label {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header class="header">
+      <div class="logo-box">
+        <img
+          src="https://i.imgur.com/REPLACE_WITH_DIRECT_IMAGE_ID.png"
+          alt="Blue Hive Marketing logo"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=&quot;color:#0363d5;font-size:25px;&quot;>BH</strong>';"
+        >
+      </div>
+
+      <div>
+        <h1>Client Onboarding Form</h1>
+        <p>
+          Complete this form during the customer’s first meeting so our team
+          has the information needed to begin working with them.
+        </p>
+      </div>
+    </header>
+
+    <div class="progress-box">
+      <div class="progress-info">
+        <span>Form progress</span>
+        <span id="progressText">0%</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <form id="onboardingForm">
+
+      <input
+        class="hidden-field"
+        type="text"
+        name="companyWebsite"
+        tabindex="-1"
+        autocomplete="off"
+      >
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">1</span>
+
+          <div>
+            <h2>Internal Submission Details</h2>
+            <p>Information about the person completing this form.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="submittedBy">
+              Submitted by <span class="required">*</span>
+            </label>
+
+            <input
+              id="submittedBy"
+              name="submittedBy"
+              type="text"
+              placeholder="Sales or account manager name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="submissionDate">
+              Onboarding date <span class="required">*</span>
+            </label>
+
+            <input
+              id="submissionDate"
+              name="submissionDate"
+              type="date"
+              required
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">2</span>
+
+          <div>
+            <h2>Business Information</h2>
+            <p>Primary information about the new client.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field full">
+            <label for="businessName">
+              Business name <span class="required">*</span>
+            </label>
+
+            <input
+              id="businessName"
+              name="businessName"
+              type="text"
+              placeholder="Business name"
+              autocomplete="organization"
+              required
+            >
+          </div>
+
+          <div class="field full">
+            <label for="businessAddress">
+              Business address <span class="required">*</span>
+            </label>
+
+            <input
+              id="businessAddress"
+              name="businessAddress"
+              type="text"
+              placeholder="Street, city, state and ZIP code"
+              autocomplete="street-address"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="businessPhone">
+              Business phone <span class="required">*</span>
+            </label>
+
+            <input
+              id="businessPhone"
+              name="businessPhone"
+              type="tel"
+              placeholder="(937) 555-0123"
+              inputmode="tel"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="businessCategory">Business category</label>
+
+            <input
+              id="businessCategory"
+              name="businessCategory"
+              type="text"
+              placeholder="Restaurant, retail, dealership, etc."
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">3</span>
+
+          <div>
+            <h2>Owner and Main Contact</h2>
+            <p>Contact details for communication, billing and approval.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="ownerName">
+              Owner or primary contact <span class="required">*</span>
+            </label>
+
+            <input
+              id="ownerName"
+              name="ownerName"
+              type="text"
+              placeholder="Full name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="ownerPhone">
+              Contact number <span class="required">*</span>
+            </label>
+
+            <input
+              id="ownerPhone"
+              name="ownerPhone"
+              type="tel"
+              placeholder="(937) 555-0123"
+              inputmode="tel"
+              required
+            >
+          </div>
+
+          <div class="field full">
+            <label for="ownerEmail">
+              Email address <span class="required">*</span>
+            </label>
+
+            <input
+              id="ownerEmail"
+              name="ownerEmail"
+              type="email"
+              placeholder="owner@example.com"
+              inputmode="email"
+              required
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">4</span>
+
+          <div>
+            <h2>Website and Social Profiles</h2>
+            <p>Existing business profiles and public links.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+
+          <fieldset class="field">
+            <legend>
+              Does the business have a website?
+              <span class="required">*</span>
+            </legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="websiteYes"
+                  name="hasWebsite"
+                  type="radio"
+                  value="Yes"
+                  required
+                >
+                <label for="websiteYes">Yes</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="websiteNo"
+                  name="hasWebsite"
+                  type="radio"
+                  value="No"
+                >
+                <label for="websiteNo">No</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>
+              Google Business Profile?
+              <span class="required">*</span>
+            </legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="googleYes"
+                  name="hasGoogleBusiness"
+                  type="radio"
+                  value="Yes"
+                  required
+                >
+                <label for="googleYes">Yes</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="googleNo"
+                  name="hasGoogleBusiness"
+                  type="radio"
+                  value="No"
+                >
+                <label for="googleNo">No</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="googleUnsure"
+                  name="hasGoogleBusiness"
+                  type="radio"
+                  value="Unsure"
+                >
+                <label for="googleUnsure">Unsure</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div
+            class="conditional"
+            data-condition-name="hasWebsite"
+            data-condition-value="Yes"
+          >
+            <div class="field">
+              <label for="websiteUrl">Website link</label>
+
+              <input
+                id="websiteUrl"
+                name="websiteUrl"
+                type="url"
+                placeholder="https://example.com"
+                inputmode="url"
+              >
+            </div>
+          </div>
+
+          <div
+            class="conditional"
+            data-condition-name="hasGoogleBusiness"
+            data-condition-value="Yes"
+          >
+            <div class="field">
+              <label for="googleBusinessUrl">
+                Google Business Profile link
+              </label>
+
+              <input
+                id="googleBusinessUrl"
+                name="googleBusinessUrl"
+                type="url"
+                placeholder="Paste the Google Maps or profile link"
+                inputmode="url"
+              >
+            </div>
+          </div>
+
+          <fieldset class="field">
+            <legend>
+              Does the business have Facebook?
+              <span class="required">*</span>
+            </legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="facebookYes"
+                  name="hasFacebook"
+                  type="radio"
+                  value="Yes"
+                  required
+                >
+                <label for="facebookYes">Yes</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="facebookNo"
+                  name="hasFacebook"
+                  type="radio"
+                  value="No"
+                >
+                <label for="facebookNo">No</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>
+              Does the business have Instagram?
+              <span class="required">*</span>
+            </legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="instagramYes"
+                  name="hasInstagram"
+                  type="radio"
+                  value="Yes"
+                  required
+                >
+                <label for="instagramYes">Yes</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="instagramNo"
+                  name="hasInstagram"
+                  type="radio"
+                  value="No"
+                >
+                <label for="instagramNo">No</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div
+            class="conditional"
+            data-condition-name="hasFacebook"
+            data-condition-value="Yes"
+          >
+            <div class="field">
+              <label for="facebookUrl">Facebook page link</label>
+
+              <input
+                id="facebookUrl"
+                name="facebookUrl"
+                type="url"
+                placeholder="https://facebook.com/business"
+                inputmode="url"
+              >
+            </div>
+          </div>
+
+          <div
+            class="conditional"
+            data-condition-name="hasInstagram"
+            data-condition-value="Yes"
+          >
+            <div class="field">
+              <label for="instagramUrl">
+                Instagram profile link or username
+              </label>
+
+              <input
+                id="instagramUrl"
+                name="instagramUrl"
+                type="text"
+                placeholder="@username"
+              >
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">5</span>
+
+          <div>
+            <h2>Platform and Account Access</h2>
+            <p>Record the systems the client uses and how access will be provided.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+
+          <div class="warning">
+            <strong>Security notice:</strong>
+            Whenever possible, ask the customer to invite Blue Hive Marketing
+            as an authorized user instead of providing a permanent password.
+            Never enter credit-card or bank information in this form.
+          </div>
+
+          <div class="field">
+            <label for="posSystem">POS system</label>
+
+            <select id="posSystem" name="posSystem">
+              <option value="">Select a POS system</option>
+              <option value="Clover">Clover</option>
+              <option value="Toast">Toast</option>
+              <option value="Square">Square</option>
+              <option value="Lightspeed">Lightspeed</option>
+              <option value="Shopify POS">Shopify POS</option>
+              <option value="TouchBistro">TouchBistro</option>
+              <option value="Revel Systems">Revel Systems</option>
+              <option value="SpotOn">SpotOn</option>
+              <option value="Heartland">Heartland</option>
+              <option value="PayPal Zettle">PayPal Zettle</option>
+              <option value="PAR Brink POS">PAR Brink POS</option>
+              <option value="Aloha POS">Aloha POS</option>
+              <option value="Oracle MICROS">Oracle MICROS</option>
+              <option value="Other">Other</option>
+              <option value="None">None</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="posOther">Other POS system</label>
+
+            <input
+              id="posOther"
+              name="posOther"
+              type="text"
+              placeholder="Enter the POS system name"
+            >
+          </div>
+
+          <fieldset class="field full">
+            <legend>How will POS access be provided?</legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="posInvite"
+                  name="posAccessMethod"
+                  type="radio"
+                  value="User invitation"
+                >
+                <label for="posInvite">Invitation</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="posTemporary"
+                  name="posAccessMethod"
+                  type="radio"
+                  value="Temporary credentials"
+                >
+                <label for="posTemporary">Temporary login</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="posNotNeeded"
+                  name="posAccessMethod"
+                  type="radio"
+                  value="Not needed"
+                >
+                <label for="posNotNeeded">Not needed</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div
+            class="conditional"
+            data-condition-name="posAccessMethod"
+            data-condition-value="Temporary credentials"
+          >
+            <div class="grid">
+              <div class="field">
+                <label for="posUsername">POS username</label>
+
+                <input
+                  id="posUsername"
+                  name="posUsername"
+                  type="text"
+                  placeholder="Username or email"
+                  autocomplete="off"
+                >
+              </div>
+
+              <div class="field">
+                <label for="posPassword">Temporary POS password</label>
+
+                <div class="password-box">
+                  <input
+                    id="posPassword"
+                    name="posPassword"
+                    type="password"
+                    placeholder="Temporary password"
+                    autocomplete="new-password"
+                  >
+
+                  <button
+                    class="password-button"
+                    type="button"
+                    data-target="posPassword"
+                  >
+                    Show
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="field full">
+            <legend>
+              Does the business have DoorDash?
+              <span class="required">*</span>
+            </legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="doorDashYes"
+                  name="hasDoorDash"
+                  type="radio"
+                  value="Yes"
+                  required
+                >
+                <label for="doorDashYes">Yes</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="doorDashNo"
+                  name="hasDoorDash"
+                  type="radio"
+                  value="No"
+                >
+                <label for="doorDashNo">No</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="doorDashNA"
+                  name="hasDoorDash"
+                  type="radio"
+                  value="Not applicable"
+                >
+                <label for="doorDashNA">N/A</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div
+            class="conditional"
+            data-condition-name="hasDoorDash"
+            data-condition-value="Yes"
+          >
+            <div class="grid">
+              <div class="field full">
+                <label for="doorDashAccessMethod">
+                  DoorDash access method
+                </label>
+
+                <select
+                  id="doorDashAccessMethod"
+                  name="doorDashAccessMethod"
+                >
+                  <option value="">Select an access method</option>
+                  <option value="User invitation">User invitation</option>
+                  <option value="Temporary credentials">
+                    Temporary credentials
+                  </option>
+                  <option value="Access later">
+                    Access will be provided later
+                  </option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="doorDashUsername">DoorDash username</label>
+
+                <input
+                  id="doorDashUsername"
+                  name="doorDashUsername"
+                  type="text"
+                  placeholder="Username or email"
+                  autocomplete="off"
+                >
+              </div>
+
+              <div class="field">
+                <label for="doorDashPassword">
+                  Temporary DoorDash password
+                </label>
+
+                <div class="password-box">
+                  <input
+                    id="doorDashPassword"
+                    name="doorDashPassword"
+                    type="password"
+                    placeholder="Temporary password"
+                    autocomplete="new-password"
+                  >
+
+                  <button
+                    class="password-button"
+                    type="button"
+                    data-target="doorDashPassword"
+                  >
+                    Show
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field full">
+            <label for="otherPlatforms">
+              Other platforms or account access needed
+            </label>
+
+            <textarea
+              id="otherPlatforms"
+              name="otherPlatforms"
+              placeholder="Uber Eats, Grubhub, website hosting, domain provider, email marketing, etc."
+            ></textarea>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">6</span>
+
+          <div>
+            <h2>Payment Confirmation</h2>
+            <p>Confirm the initial payment without recording card details.</p>
+          </div>
+        </div>
+
+        <div class="grid">
+
+          <fieldset class="field full">
+            <legend>
+              Was the first payment received?
+              <span class="required">*</span>
+            </legend>
+
+            <div class="options">
+              <div class="option">
+                <input
+                  id="paymentYes"
+                  name="paymentReceived"
+                  type="radio"
+                  value="Yes"
+                  required
+                >
+                <label for="paymentYes">Yes</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="paymentPending"
+                  name="paymentReceived"
+                  type="radio"
+                  value="Pending"
+                >
+                <label for="paymentPending">Pending</label>
+              </div>
+
+              <div class="option">
+                <input
+                  id="paymentNo"
+                  name="paymentReceived"
+                  type="radio"
+                  value="No"
+                >
+                <label for="paymentNo">No</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div
+            class="conditional"
+            data-condition-name="paymentReceived"
+            data-condition-value="Yes"
+          >
+            <div class="grid">
+              <div class="field">
+                <label for="paymentAmount">Payment amount</label>
+
+                <input
+                  id="paymentAmount"
+                  name="paymentAmount"
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  inputmode="decimal"
+                >
+              </div>
+
+              <div class="field">
+                <label for="paymentMethod">Payment method</label>
+
+                <select id="paymentMethod" name="paymentMethod">
+                  <option value="">Select payment method</option>
+                  <option value="Credit or debit card">
+                    Credit or debit card
+                  </option>
+                  <option value="ACH or bank transfer">
+                    ACH or bank transfer
+                  </option>
+                  <option value="Check">Check</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Online invoice">Online invoice</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="field full">
+                <label for="paymentReference">
+                  Receipt or transaction reference
+                </label>
+
+                <input
+                  id="paymentReference"
+                  name="paymentReference"
+                  type="text"
+                  placeholder="Optional receipt or transaction ID"
+                >
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">7</span>
+
+          <div>
+            <h2>Onboarding Checklist</h2>
+            <p>Confirm that the first-meeting steps were completed.</p>
+          </div>
+        </div>
+
+        <div class="checklist">
+
+          <div class="check-item">
+            <input
+              id="checkPayment"
+              name="checkPayment"
+              type="checkbox"
+              value="Completed"
+            >
+
+            <label for="checkPayment">
+              I confirmed or collected the customer’s first payment.
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input
+              id="checkFiles"
+              name="checkFiles"
+              type="checkbox"
+              value="Completed"
+            >
+
+            <label for="checkFiles">
+              I asked the customer to send all available files, including
+              their logo, menu, photos, brand assets and marketing materials.
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input
+              id="checkServices"
+              name="checkServices"
+              type="checkbox"
+              value="Completed"
+            >
+
+            <label for="checkServices">
+              I confirmed the services, pricing and scope of work with the
+              customer.
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input
+              id="checkAccess"
+              name="checkAccess"
+              type="checkbox"
+              value="Completed"
+            >
+
+            <label for="checkAccess">
+              I confirmed which accounts require access and explained the
+              preferred invitation process.
+            </label>
+          </div>
+
+          <div class="check-item">
+            <input
+              id="checkNextSteps"
+              name="checkNextSteps"
+              type="checkbox"
+              value="Completed"
+            >
+
+            <label for="checkNextSteps">
+              I explained the next steps, expected timeline and main point of
+              contact.
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <span class="number">8</span>
+
+          <div>
+            <h2>Notes and Follow-Up</h2>
+            <p>Add anything the internal team should know.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="notes">Internal notes</label>
+
+          <textarea
+            id="notes"
+            name="notes"
+            placeholder="Special requests, deadlines, missing information, concerns or follow-up tasks"
+          ></textarea>
+        </div>
+      </section>
+
+      <div class="submit-area">
+        <button
+          class="submit-button"
+          id="submitButton"
+          type="submit"
+        >
+          Submit Onboarding Form
+        </button>
+
+        <div
+          class="status"
+          id="formStatus"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+        <p class="footer">
+          Blue Hive Marketing · Internal onboarding form
+        </p>
+      </div>
+
+    </form>
+  </main>
+
+  <script>
+    const SCRIPT_URL =
+      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+    const form = document.getElementById("onboardingForm");
+    const submitButton = document.getElementById("submitButton");
+    const formStatus = document.getElementById("formStatus");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    document.getElementById("submissionDate").value =
+      new Date().toISOString().split("T")[0];
+
+    function updateConditionalFields() {
+      document.querySelectorAll(".conditional").forEach(function (section) {
+        const fieldName = section.dataset.conditionName;
+        const requiredValue = section.dataset.conditionValue;
+        const selectedOption = document.querySelector(
+          '[name="' + fieldName + '"]:checked'
+        );
+
+        const shouldShow =
+          selectedOption && selectedOption.value === requiredValue;
+
+        section.classList.toggle("show", Boolean(shouldShow));
+      });
+    }
+
+    document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+      radio.addEventListener("change", updateConditionalFields);
+    });
+
+    document
+      .querySelectorAll(".password-button")
+      .forEach(function (button) {
+        button.addEventListener("click", function () {
+          const input = document.getElementById(button.dataset.target);
+          const hidden = input.type === "password";
+
+          input.type = hidden ? "text" : "password";
+          button.textContent = hidden ? "Hide" : "Show";
+        });
+      });
+
+    function updateProgress() {
+      const requiredFields = Array.from(
+        form.querySelectorAll("[required]")
+      ).filter(function (field) {
+        return field.offsetParent !== null;
+      });
+
+      const fieldNames = new Set();
+
+      requiredFields.forEach(function (field) {
+        fieldNames.add(field.type === "radio" ? field.name : field.id);
+      });
+
+      let completed = 0;
+
+      fieldNames.forEach(function (name) {
+        const radio = form.querySelector(
+          'input[type="radio"][name="' + name + '"]'
+        );
+
+        if (radio) {
+          if (
+            form.querySelector(
+              'input[type="radio"][name="' + name + '"]:checked'
+            )
+          ) {
+            completed++;
+          }
+        } else {
+          const field = document.getElementById(name);
+
+          if (field && String(field.value).trim() !== "") {
+            completed++;
+          }
+        }
+      });
+
+      const percentage = fieldNames.size
+        ? Math.round((completed / fieldNames.size) * 100)
+        : 0;
+
+      progressBar.style.width = percentage + "%";
+      progressText.textContent = percentage + "%";
+    }
+
+    form.addEventListener("input", updateProgress);
+
+    form.addEventListener("change", function () {
+      updateConditionalFields();
+      updateProgress();
+    });
+
+    function formToObject(formElement) {
+      const formData = new FormData(formElement);
+      const data = {};
+
+      formData.forEach(function (value, key) {
+        data[key] = value;
+      });
+
+      data.submittedAt = new Date().toISOString();
+      data.sourcePage = window.location.href;
+      data.targetSpreadsheet = "Blue Hive - On Boarding";
+      data.targetSheetTab = "Onboarding";
+
+      return data;
+    }
+
+    function showStatus(message, type) {
+      formStatus.textContent = message;
+      formStatus.className = "status show " + type;
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      if (form.elements.companyWebsite.value) {
+        return;
+      }
+
+      if (
+        !SCRIPT_URL ||
+        SCRIPT_URL.includes("PASTE_YOUR")
+      ) {
+        showStatus(
+          "The form design is ready, but the Google Apps Script URL has not been added yet.",
+          "error"
+        );
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(formToObject(form))
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || result.success !== true) {
+          throw new Error(result.message || "Submission failed.");
+        }
+
+        showStatus(
+          "The onboarding form was submitted successfully.",
+          "success"
+        );
+
+        form.reset();
+
+        document.getElementById("submissionDate").value =
+          new Date().toISOString().split("T")[0];
+
+        updateConditionalFields();
+        updateProgress();
+      } catch (error) {
+        console.error(error);
+
+        showStatus(
+          "The form could not be submitted. Please check the connection and try again.",
+          "error"
+        );
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Onboarding Form";
+      }
+    });
+
+    updateConditionalFields();
+    updateProgress();
+  </script>
+
+</body>
+</html>

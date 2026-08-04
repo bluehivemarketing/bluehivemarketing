@@ -289,16 +289,6 @@
       display: block;
     }
 
-    .warning {
-      grid-column: 1 / -1;
-      padding: 14px;
-      color: #684a00;
-      background: #fff7e6;
-      border: 1px solid #efc66f;
-      border-radius: 11px;
-      font-size: 13px;
-    }
-
     .password-box {
       position: relative;
     }
@@ -448,8 +438,7 @@
       }
 
       .full,
-      .conditional,
-      .warning {
+      .conditional {
         grid-column: auto;
       }
     }
@@ -895,13 +884,6 @@
 
         <div class="grid">
 
-          <div class="warning">
-            <strong>Security notice:</strong>
-            Whenever possible, ask the customer to invite Blue Hive Marketing
-            as an authorized user. Never enter credit-card or bank information
-            into this form.
-          </div>
-
           <div class="field full">
             <label for="posSystem">POS system</label>
 
@@ -1283,7 +1265,7 @@
 
   <script>
     const SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycby_hTElCf526VMOcK5lO9SRbF75Lne56RmyxhAJ84Nfk7HiBlwA-5RRgK6x5w9hogXQuA/exec";
+      "https://script.google.com/macros/s/AKfycbwKYKlr8Y2OJHv8XvFtn3zugn3Fu_ADvMrPGBjiEbMCplY0JLLo0wIy4lpfvgN6J_42Bg/exec";
 
     const form = document.getElementById("onboardingForm");
     const submitButton = document.getElementById("submitButton");
@@ -1424,11 +1406,6 @@
     function showStatus(message, type) {
       formStatus.textContent = message;
       formStatus.className = "status show " + type;
-
-      formStatus.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
     }
 
     form.addEventListener("submit", async function (event) {
@@ -1483,11 +1460,6 @@
           );
         }
 
-        showStatus(
-          "The onboarding form was submitted and saved successfully.",
-          "success"
-        );
-
         form.reset();
 
         document.getElementById("submissionDate").value =
@@ -1495,13 +1467,34 @@
 
         updateConditionalFields();
         updateProgress();
+
+        showStatus(
+          "The onboarding form was submitted and saved successfully.",
+          "success"
+        );
+
+        setTimeout(function () {
+          formStatus.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 150);
+
       } catch (error) {
         console.error("Submission error:", error);
 
         showStatus(
-          "The form was not saved. Please verify the Google Apps Script deployment is set to Anyone and try again.",
+          "The form was not saved. Please verify the Google Apps Script deployment and try again.",
           "error"
         );
+
+        setTimeout(function () {
+          formStatus.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        }, 100);
+
       } finally {
         submitButton.disabled = false;
         submitButton.textContent =

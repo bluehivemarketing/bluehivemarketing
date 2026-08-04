@@ -316,7 +316,6 @@
       color: var(--blue);
       background: transparent;
       border: none;
-      border-radius: 7px;
       cursor: pointer;
       font-size: 12px;
       font-weight: bold;
@@ -368,20 +367,15 @@
       font-size: 16px;
       font-weight: bold;
       box-shadow: 0 10px 25px rgba(3, 99, 213, 0.24);
-      transition:
-        background 0.2s ease,
-        transform 0.2s ease;
     }
 
     .submit-button:hover {
       background: var(--dark-blue);
-      transform: translateY(-1px);
     }
 
     .submit-button:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      transform: none;
     }
 
     .status {
@@ -539,7 +533,6 @@
               name="submittedBy"
               type="text"
               placeholder="Sales or account manager name"
-              autocomplete="name"
               required
             >
           </div>
@@ -580,7 +573,6 @@
               name="businessName"
               type="text"
               placeholder="Business name"
-              autocomplete="organization"
               required
             >
           </div>
@@ -595,7 +587,6 @@
               name="businessAddress"
               type="text"
               placeholder="Street, city, state and ZIP code"
-              autocomplete="street-address"
               required
             >
           </div>
@@ -610,7 +601,6 @@
               name="businessPhone"
               type="tel"
               placeholder="(937) 555-0123"
-              autocomplete="tel"
               inputmode="tel"
               required
             >
@@ -650,7 +640,6 @@
               name="ownerName"
               type="text"
               placeholder="Full name"
-              autocomplete="name"
               required
             >
           </div>
@@ -665,7 +654,6 @@
               name="ownerPhone"
               type="tel"
               placeholder="(937) 555-0123"
-              autocomplete="tel"
               inputmode="tel"
               required
             >
@@ -681,7 +669,6 @@
               name="ownerEmail"
               type="email"
               placeholder="owner@example.com"
-              autocomplete="email"
               inputmode="email"
               required
             >
@@ -716,7 +703,6 @@
                   value="Yes"
                   required
                 >
-
                 <label for="websiteYes">Yes</label>
               </div>
 
@@ -727,7 +713,6 @@
                   type="radio"
                   value="No"
                 >
-
                 <label for="websiteNo">No</label>
               </div>
             </div>
@@ -748,7 +733,6 @@
                   value="Yes"
                   required
                 >
-
                 <label for="googleYes">Yes</label>
               </div>
 
@@ -759,7 +743,6 @@
                   type="radio"
                   value="No"
                 >
-
                 <label for="googleNo">No</label>
               </div>
             </div>
@@ -778,7 +761,6 @@
                 name="websiteUrl"
                 type="url"
                 placeholder="https://example.com"
-                inputmode="url"
               >
             </div>
           </div>
@@ -798,7 +780,6 @@
                 name="googleBusinessUrl"
                 type="url"
                 placeholder="Paste the Google Maps or profile link"
-                inputmode="url"
               >
             </div>
           </div>
@@ -818,7 +799,6 @@
                   value="Yes"
                   required
                 >
-
                 <label for="facebookYes">Yes</label>
               </div>
 
@@ -829,7 +809,6 @@
                   type="radio"
                   value="No"
                 >
-
                 <label for="facebookNo">No</label>
               </div>
             </div>
@@ -850,7 +829,6 @@
                   value="Yes"
                   required
                 >
-
                 <label for="instagramYes">Yes</label>
               </div>
 
@@ -861,7 +839,6 @@
                   type="radio"
                   value="No"
                 >
-
                 <label for="instagramNo">No</label>
               </div>
             </div>
@@ -880,7 +857,6 @@
                 name="facebookUrl"
                 type="url"
                 placeholder="https://facebook.com/business"
-                inputmode="url"
               >
             </div>
           </div>
@@ -998,7 +974,6 @@
                   value="Yes"
                   required
                 >
-
                 <label for="doorDashYes">Yes</label>
               </div>
 
@@ -1009,7 +984,6 @@
                   type="radio"
                   value="No"
                 >
-
                 <label for="doorDashNo">No</label>
               </div>
             </div>
@@ -1103,7 +1077,6 @@
                   value="Yes"
                   required
                 >
-
                 <label for="paymentYes">Yes</label>
               </div>
 
@@ -1114,7 +1087,6 @@
                   type="radio"
                   value="Pending"
                 >
-
                 <label for="paymentPending">Pending</label>
               </div>
 
@@ -1125,7 +1097,6 @@
                   type="radio"
                   value="No"
                 >
-
                 <label for="paymentNo">No</label>
               </div>
             </div>
@@ -1147,7 +1118,6 @@
                   min="0"
                   step="0.01"
                   placeholder="0.00"
-                  inputmode="decimal"
                 >
               </div>
 
@@ -1227,8 +1197,7 @@
             >
 
             <label for="checkServices">
-              I confirmed the services, pricing and scope of work with the
-              customer.
+              I confirmed the services, pricing and scope of work with the customer.
               <span class="required">*</span>
             </label>
           </div>
@@ -1259,8 +1228,7 @@
             >
 
             <label for="checkNextSteps">
-              I explained the next steps, expected timeline and main point
-              of contact.
+              I explained the next steps, expected timeline and main point of contact.
               <span class="required">*</span>
             </label>
           </div>
@@ -1315,7 +1283,7 @@
 
   <script>
     const SCRIPT_URL =
-      "https://script.google.com/macros/s/AKfycbxPbkrPXDKmLIpxM0dmQulX60hCVddtSzDvTQ2FhtWB_ET1Py0XV9s5LQFS4qjtVzAxMg/exec";
+      "https://script.google.com/macros/s/AKfycbx1WlS-HI9e2kDwP4-STj20Fy-SurfiuKrpXQCj5kaE-i8oNV5nD45zXueFbbmf9itE7A/exec";
 
     const form = document.getElementById("onboardingForm");
     const submitButton = document.getElementById("submitButton");
@@ -1487,20 +1455,36 @@
       submitButton.textContent = "Submitting...";
       formStatus.className = "status";
 
-      const submissionData = formToObject(form);
-
       try {
-        await fetch(SCRIPT_URL, {
+        const response = await fetch(SCRIPT_URL, {
           method: "POST",
-          mode: "no-cors",
+          redirect: "follow",
           headers: {
             "Content-Type": "text/plain;charset=utf-8"
           },
-          body: JSON.stringify(submissionData)
+          body: JSON.stringify(formToObject(form))
         });
 
+        const responseText = await response.text();
+
+        let result;
+
+        try {
+          result = JSON.parse(responseText);
+        } catch (error) {
+          throw new Error(
+            "Google Apps Script returned an invalid response."
+          );
+        }
+
+        if (!response.ok || result.success !== true) {
+          throw new Error(
+            result.message || "The submission was not saved."
+          );
+        }
+
         showStatus(
-          "The onboarding form was submitted successfully.",
+          "The onboarding form was submitted and saved successfully.",
           "success"
         );
 
@@ -1515,7 +1499,7 @@
         console.error("Submission error:", error);
 
         showStatus(
-          "The form could not be submitted. Please check your internet connection and try again.",
+          "The form was not saved. Please verify the Google Apps Script deployment is set to Anyone and try again.",
           "error"
         );
       } finally {

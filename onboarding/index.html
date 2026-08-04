@@ -26,11 +26,17 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
-      background: var(--background);
+      background:
+        radial-gradient(circle at top left, rgba(3, 99, 213, 0.12), transparent 30%),
+        var(--background);
       line-height: 1.5;
     }
 
@@ -51,7 +57,7 @@
       align-items: center;
       gap: 18px;
       padding: 25px;
-      color: white;
+      color: var(--white);
       background: linear-gradient(135deg, var(--blue), #0b78ef);
       border-radius: 18px;
       box-shadow: 0 15px 35px rgba(3, 99, 213, 0.2);
@@ -65,8 +71,11 @@
       place-items: center;
       overflow: hidden;
       padding: 8px;
-      background: white;
+      color: var(--blue);
+      background: var(--white);
       border-radius: 16px;
+      font-size: 26px;
+      font-weight: bold;
     }
 
     .logo-box img {
@@ -78,10 +87,11 @@
     .header h1 {
       margin: 0;
       font-size: 34px;
+      line-height: 1.15;
     }
 
     .header p {
-      margin: 6px 0 0;
+      margin: 7px 0 0;
       color: rgba(255, 255, 255, 0.88);
     }
 
@@ -95,14 +105,15 @@
       border: 1px solid var(--border);
       border-radius: 13px;
       box-shadow: 0 8px 20px rgba(20, 48, 86, 0.08);
+      backdrop-filter: blur(10px);
     }
 
     .progress-info {
       display: flex;
       justify-content: space-between;
       margin-bottom: 8px;
-      font-weight: bold;
       font-size: 14px;
+      font-weight: bold;
     }
 
     .progress-track {
@@ -127,7 +138,7 @@
 
     .card {
       padding: 24px;
-      background: white;
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: 18px;
       box-shadow: 0 8px 25px rgba(20, 48, 86, 0.06);
@@ -135,8 +146,8 @@
 
     .section-title {
       display: flex;
-      gap: 12px;
       align-items: flex-start;
+      gap: 12px;
       padding-bottom: 16px;
       margin-bottom: 20px;
       border-bottom: 1px solid var(--border);
@@ -148,7 +159,7 @@
       flex-shrink: 0;
       display: grid;
       place-items: center;
-      color: white;
+      color: var(--white);
       background: var(--blue);
       border-radius: 10px;
       font-weight: bold;
@@ -197,10 +208,11 @@
       min-height: 48px;
       padding: 11px 13px;
       color: var(--text);
-      background: white;
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: 11px;
       outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     input:focus,
@@ -208,6 +220,11 @@
     textarea:focus {
       border-color: var(--blue);
       box-shadow: 0 0 0 4px rgba(3, 99, 213, 0.12);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #9ca7b5;
     }
 
     textarea {
@@ -236,6 +253,7 @@
     .option input {
       position: absolute;
       opacity: 0;
+      pointer-events: none;
     }
 
     .option label {
@@ -250,12 +268,14 @@
       background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: 100px;
+      transition: 0.2s ease;
     }
 
     .option input:checked + label {
       color: var(--blue);
       background: var(--light-blue);
       border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(3, 99, 213, 0.08);
     }
 
     .conditional {
@@ -298,6 +318,7 @@
       color: var(--blue);
       background: transparent;
       border: none;
+      border-radius: 7px;
       cursor: pointer;
       font-size: 12px;
       font-weight: bold;
@@ -323,7 +344,13 @@
       height: 21px;
       min-height: 21px;
       flex-shrink: 0;
+      margin-top: 1px;
       accent-color: var(--blue);
+    }
+
+    .check-item label {
+      cursor: pointer;
+      font-weight: 600;
     }
 
     .submit-area {
@@ -334,23 +361,27 @@
 
     .submit-button {
       min-height: 55px;
-      color: white;
+      padding: 13px 20px;
+      color: var(--white);
       background: var(--blue);
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      font-weight: bold;
       font-size: 16px;
+      font-weight: bold;
       box-shadow: 0 10px 25px rgba(3, 99, 213, 0.24);
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .submit-button:hover {
       background: var(--dark-blue);
+      transform: translateY(-1px);
     }
 
     .submit-button:disabled {
       opacity: 0.6;
       cursor: not-allowed;
+      transform: none;
     }
 
     .status {
@@ -386,6 +417,9 @@
     .hidden-field {
       position: absolute;
       left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
 
     @media (max-width: 700px) {
@@ -448,7 +482,6 @@
 </head>
 
 <body>
-
   <main class="container">
 
     <header class="header">
@@ -456,7 +489,7 @@
         <img
           src="https://i.imgur.com/REPLACE_WITH_DIRECT_IMAGE_ID.png"
           alt="Blue Hive Marketing logo"
-          onerror="this.style.display='none'; this.parentElement.innerHTML='<strong style=&quot;color:#0363d5;font-size:25px;&quot;>BH</strong>';"
+          onerror="this.style.display='none'; this.parentElement.textContent='BH';"
         >
       </div>
 
@@ -511,6 +544,7 @@
               name="submittedBy"
               type="text"
               placeholder="Sales or account manager name"
+              autocomplete="name"
               required
             >
           </div>
@@ -581,6 +615,7 @@
               name="businessPhone"
               type="tel"
               placeholder="(937) 555-0123"
+              autocomplete="tel"
               inputmode="tel"
               required
             >
@@ -620,6 +655,7 @@
               name="ownerName"
               type="text"
               placeholder="Full name"
+              autocomplete="name"
               required
             >
           </div>
@@ -634,6 +670,7 @@
               name="ownerPhone"
               type="tel"
               placeholder="(937) 555-0123"
+              autocomplete="tel"
               inputmode="tel"
               required
             >
@@ -649,6 +686,7 @@
               name="ownerEmail"
               type="email"
               placeholder="owner@example.com"
+              autocomplete="email"
               inputmode="email"
               required
             >
@@ -1282,8 +1320,7 @@
             >
 
             <label for="checkServices">
-              I confirmed the services, pricing and scope of work with the
-              customer.
+              I confirmed the services, pricing and scope of work with the customer.
             </label>
           </div>
 
@@ -1310,8 +1347,7 @@
             >
 
             <label for="checkNextSteps">
-              I explained the next steps, expected timeline and main point of
-              contact.
+              I explained the next steps, expected timeline and main point of contact.
             </label>
           </div>
 
@@ -1365,7 +1401,7 @@
 
   <script>
     const SCRIPT_URL =
-      "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+      "https://script.google.com/macros/s/AKfycbxPbkrPXDKmLIpxM0dmQulX60hCVddtSzDvTQ2FhtWB_ET1Py0XV9s5LQFS4qjtVzAxMg/exec";
 
     const form = document.getElementById("onboardingForm");
     const submitButton = document.getElementById("submitButton");
@@ -1417,7 +1453,9 @@
       const fieldNames = new Set();
 
       requiredFields.forEach(function (field) {
-        fieldNames.add(field.type === "radio" ? field.name : field.id);
+        fieldNames.add(
+          field.type === "radio" ? field.name : field.id
+        );
       });
 
       let completed = 0;
@@ -1428,11 +1466,11 @@
         );
 
         if (radio) {
-          if (
-            form.querySelector(
-              'input[type="radio"][name="' + name + '"]:checked'
-            )
-          ) {
+          const checkedRadio = form.querySelector(
+            'input[type="radio"][name="' + name + '"]:checked'
+          );
+
+          if (checkedRadio) {
             completed++;
           }
         } else {
@@ -1478,6 +1516,11 @@
     function showStatus(message, type) {
       formStatus.textContent = message;
       formStatus.className = "status show " + type;
+
+      formStatus.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
     }
 
     form.addEventListener("submit", async function (event) {
@@ -1492,19 +1535,9 @@
         return;
       }
 
-      if (
-        !SCRIPT_URL ||
-        SCRIPT_URL.includes("PASTE_YOUR")
-      ) {
-        showStatus(
-          "The form design is ready, but the Google Apps Script URL has not been added yet.",
-          "error"
-        );
-        return;
-      }
-
       submitButton.disabled = true;
       submitButton.textContent = "Submitting...";
+      formStatus.className = "status";
 
       try {
         const response = await fetch(SCRIPT_URL, {
@@ -1515,10 +1548,19 @@
           body: JSON.stringify(formToObject(form))
         });
 
-        const result = await response.json();
+        const responseText = await response.text();
+        let result;
 
-        if (!response.ok || result.success !== true) {
-          throw new Error(result.message || "Submission failed.");
+        try {
+          result = JSON.parse(responseText);
+        } catch {
+          throw new Error("The server returned an invalid response.");
+        }
+
+        if (result.success !== true) {
+          throw new Error(
+            result.message || "The submission could not be saved."
+          );
         }
 
         showStatus(
@@ -1549,6 +1591,5 @@
     updateConditionalFields();
     updateProgress();
   </script>
-
 </body>
 </html>

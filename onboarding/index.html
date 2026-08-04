@@ -35,7 +35,11 @@
       font-family: Arial, Helvetica, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(3, 99, 213, 0.12), transparent 30%),
+        radial-gradient(
+          circle at top left,
+          rgba(3, 99, 213, 0.12),
+          transparent 30%
+        ),
         var(--background);
       line-height: 1.5;
     }
@@ -69,19 +73,11 @@
       flex-shrink: 0;
       display: grid;
       place-items: center;
-      overflow: hidden;
-      padding: 8px;
       color: var(--blue);
       background: var(--white);
       border-radius: 16px;
       font-size: 26px;
       font-weight: bold;
-    }
-
-    .logo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
     }
 
     .header h1 {
@@ -212,7 +208,9 @@
       border: 1px solid var(--border);
       border-radius: 11px;
       outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     input:focus,
@@ -370,7 +368,9 @@
       font-size: 16px;
       font-weight: bold;
       box-shadow: 0 10px 25px rgba(3, 99, 213, 0.24);
-      transition: background 0.2s ease, transform 0.2s ease;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
     }
 
     .submit-button:hover {
@@ -485,16 +485,11 @@
   <main class="container">
 
     <header class="header">
-      <div class="logo-box">
-        <img
-          src="https://i.imgur.com/REPLACE_WITH_DIRECT_IMAGE_ID.png"
-          alt="Blue Hive Marketing logo"
-          onerror="this.style.display='none'; this.parentElement.textContent='BH';"
-        >
-      </div>
+      <div class="logo-box">BH</div>
 
       <div>
         <h1>Client Onboarding Form</h1>
+
         <p>
           Complete this form during the customer’s first meeting so our team
           has the information needed to begin working with them.
@@ -721,6 +716,7 @@
                   value="Yes"
                   required
                 >
+
                 <label for="websiteYes">Yes</label>
               </div>
 
@@ -731,6 +727,7 @@
                   type="radio"
                   value="No"
                 >
+
                 <label for="websiteNo">No</label>
               </div>
             </div>
@@ -751,6 +748,7 @@
                   value="Yes"
                   required
                 >
+
                 <label for="googleYes">Yes</label>
               </div>
 
@@ -761,17 +759,8 @@
                   type="radio"
                   value="No"
                 >
-                <label for="googleNo">No</label>
-              </div>
 
-              <div class="option">
-                <input
-                  id="googleUnsure"
-                  name="hasGoogleBusiness"
-                  type="radio"
-                  value="Unsure"
-                >
-                <label for="googleUnsure">Unsure</label>
+                <label for="googleNo">No</label>
               </div>
             </div>
           </fieldset>
@@ -829,6 +818,7 @@
                   value="Yes"
                   required
                 >
+
                 <label for="facebookYes">Yes</label>
               </div>
 
@@ -839,6 +829,7 @@
                   type="radio"
                   value="No"
                 >
+
                 <label for="facebookNo">No</label>
               </div>
             </div>
@@ -859,6 +850,7 @@
                   value="Yes"
                   required
                 >
+
                 <label for="instagramYes">Yes</label>
               </div>
 
@@ -869,6 +861,7 @@
                   type="radio"
                   value="No"
                 >
+
                 <label for="instagramNo">No</label>
               </div>
             </div>
@@ -920,7 +913,7 @@
 
           <div>
             <h2>Platform and Account Access</h2>
-            <p>Record the systems the client uses and how access will be provided.</p>
+            <p>Record the systems the client uses and available access details.</p>
           </div>
         </div>
 
@@ -929,11 +922,11 @@
           <div class="warning">
             <strong>Security notice:</strong>
             Whenever possible, ask the customer to invite Blue Hive Marketing
-            as an authorized user instead of providing a permanent password.
-            Never enter credit-card or bank information in this form.
+            as an authorized user. Never enter credit-card or bank information
+            into this form.
           </div>
 
-          <div class="field">
+          <div class="field full">
             <label for="posSystem">POS system</label>
 
             <select id="posSystem" name="posSystem">
@@ -957,91 +950,36 @@
           </div>
 
           <div class="field">
-            <label for="posOther">Other POS system</label>
+            <label for="posUsername">POS username</label>
 
             <input
-              id="posOther"
-              name="posOther"
+              id="posUsername"
+              name="posUsername"
               type="text"
-              placeholder="Enter the POS system name"
+              placeholder="Username or email"
+              autocomplete="off"
             >
           </div>
 
-          <fieldset class="field full">
-            <legend>How will POS access be provided?</legend>
+          <div class="field">
+            <label for="posPassword">POS password</label>
 
-            <div class="options">
-              <div class="option">
-                <input
-                  id="posInvite"
-                  name="posAccessMethod"
-                  type="radio"
-                  value="User invitation"
-                >
-                <label for="posInvite">Invitation</label>
-              </div>
+            <div class="password-box">
+              <input
+                id="posPassword"
+                name="posPassword"
+                type="password"
+                placeholder="Password"
+                autocomplete="new-password"
+              >
 
-              <div class="option">
-                <input
-                  id="posTemporary"
-                  name="posAccessMethod"
-                  type="radio"
-                  value="Temporary credentials"
-                >
-                <label for="posTemporary">Temporary login</label>
-              </div>
-
-              <div class="option">
-                <input
-                  id="posNotNeeded"
-                  name="posAccessMethod"
-                  type="radio"
-                  value="Not needed"
-                >
-                <label for="posNotNeeded">Not needed</label>
-              </div>
-            </div>
-          </fieldset>
-
-          <div
-            class="conditional"
-            data-condition-name="posAccessMethod"
-            data-condition-value="Temporary credentials"
-          >
-            <div class="grid">
-              <div class="field">
-                <label for="posUsername">POS username</label>
-
-                <input
-                  id="posUsername"
-                  name="posUsername"
-                  type="text"
-                  placeholder="Username or email"
-                  autocomplete="off"
-                >
-              </div>
-
-              <div class="field">
-                <label for="posPassword">Temporary POS password</label>
-
-                <div class="password-box">
-                  <input
-                    id="posPassword"
-                    name="posPassword"
-                    type="password"
-                    placeholder="Temporary password"
-                    autocomplete="new-password"
-                  >
-
-                  <button
-                    class="password-button"
-                    type="button"
-                    data-target="posPassword"
-                  >
-                    Show
-                  </button>
-                </div>
-              </div>
+              <button
+                class="password-button"
+                type="button"
+                data-target="posPassword"
+              >
+                Show
+              </button>
             </div>
           </div>
 
@@ -1060,6 +998,7 @@
                   value="Yes"
                   required
                 >
+
                 <label for="doorDashYes">Yes</label>
               </div>
 
@@ -1070,17 +1009,8 @@
                   type="radio"
                   value="No"
                 >
-                <label for="doorDashNo">No</label>
-              </div>
 
-              <div class="option">
-                <input
-                  id="doorDashNA"
-                  name="hasDoorDash"
-                  type="radio"
-                  value="Not applicable"
-                >
-                <label for="doorDashNA">N/A</label>
+                <label for="doorDashNo">No</label>
               </div>
             </div>
           </fieldset>
@@ -1091,28 +1021,10 @@
             data-condition-value="Yes"
           >
             <div class="grid">
-              <div class="field full">
-                <label for="doorDashAccessMethod">
-                  DoorDash access method
-                </label>
-
-                <select
-                  id="doorDashAccessMethod"
-                  name="doorDashAccessMethod"
-                >
-                  <option value="">Select an access method</option>
-                  <option value="User invitation">User invitation</option>
-                  <option value="Temporary credentials">
-                    Temporary credentials
-                  </option>
-                  <option value="Access later">
-                    Access will be provided later
-                  </option>
-                </select>
-              </div>
-
               <div class="field">
-                <label for="doorDashUsername">DoorDash username</label>
+                <label for="doorDashUsername">
+                  DoorDash username
+                </label>
 
                 <input
                   id="doorDashUsername"
@@ -1125,7 +1037,7 @@
 
               <div class="field">
                 <label for="doorDashPassword">
-                  Temporary DoorDash password
+                  DoorDash password
                 </label>
 
                 <div class="password-box">
@@ -1133,7 +1045,7 @@
                     id="doorDashPassword"
                     name="doorDashPassword"
                     type="password"
-                    placeholder="Temporary password"
+                    placeholder="Password"
                     autocomplete="new-password"
                   >
 
@@ -1191,6 +1103,7 @@
                   value="Yes"
                   required
                 >
+
                 <label for="paymentYes">Yes</label>
               </div>
 
@@ -1201,6 +1114,7 @@
                   type="radio"
                   value="Pending"
                 >
+
                 <label for="paymentPending">Pending</label>
               </div>
 
@@ -1211,6 +1125,7 @@
                   type="radio"
                   value="No"
                 >
+
                 <label for="paymentNo">No</label>
               </div>
             </div>
@@ -1253,19 +1168,6 @@
                   <option value="Other">Other</option>
                 </select>
               </div>
-
-              <div class="field full">
-                <label for="paymentReference">
-                  Receipt or transaction reference
-                </label>
-
-                <input
-                  id="paymentReference"
-                  name="paymentReference"
-                  type="text"
-                  placeholder="Optional receipt or transaction ID"
-                >
-              </div>
             </div>
           </div>
 
@@ -1278,7 +1180,7 @@
 
           <div>
             <h2>Onboarding Checklist</h2>
-            <p>Confirm that the first-meeting steps were completed.</p>
+            <p>All checklist items are required before submission.</p>
           </div>
         </div>
 
@@ -1290,10 +1192,12 @@
               name="checkPayment"
               type="checkbox"
               value="Completed"
+              required
             >
 
             <label for="checkPayment">
               I confirmed or collected the customer’s first payment.
+              <span class="required">*</span>
             </label>
           </div>
 
@@ -1303,11 +1207,13 @@
               name="checkFiles"
               type="checkbox"
               value="Completed"
+              required
             >
 
             <label for="checkFiles">
               I asked the customer to send all available files, including
               their logo, menu, photos, brand assets and marketing materials.
+              <span class="required">*</span>
             </label>
           </div>
 
@@ -1317,10 +1223,13 @@
               name="checkServices"
               type="checkbox"
               value="Completed"
+              required
             >
 
             <label for="checkServices">
-              I confirmed the services, pricing and scope of work with the customer.
+              I confirmed the services, pricing and scope of work with the
+              customer.
+              <span class="required">*</span>
             </label>
           </div>
 
@@ -1330,11 +1239,13 @@
               name="checkAccess"
               type="checkbox"
               value="Completed"
+              required
             >
 
             <label for="checkAccess">
               I confirmed which accounts require access and explained the
               preferred invitation process.
+              <span class="required">*</span>
             </label>
           </div>
 
@@ -1344,10 +1255,13 @@
               name="checkNextSteps"
               type="checkbox"
               value="Completed"
+              required
             >
 
             <label for="checkNextSteps">
-              I explained the next steps, expected timeline and main point of contact.
+              I explained the next steps, expected timeline and main point
+              of contact.
+              <span class="required">*</span>
             </label>
           </div>
 
@@ -1416,26 +1330,42 @@
       document.querySelectorAll(".conditional").forEach(function (section) {
         const fieldName = section.dataset.conditionName;
         const requiredValue = section.dataset.conditionValue;
+
         const selectedOption = document.querySelector(
           '[name="' + fieldName + '"]:checked'
         );
 
         const shouldShow =
-          selectedOption && selectedOption.value === requiredValue;
+          selectedOption &&
+          selectedOption.value === requiredValue;
 
         section.classList.toggle("show", Boolean(shouldShow));
+
+        section
+          .querySelectorAll("input, select, textarea")
+          .forEach(function (field) {
+            field.disabled = !shouldShow;
+          });
       });
     }
 
-    document.querySelectorAll('input[type="radio"]').forEach(function (radio) {
-      radio.addEventListener("change", updateConditionalFields);
-    });
+    document
+      .querySelectorAll('input[type="radio"]')
+      .forEach(function (radio) {
+        radio.addEventListener(
+          "change",
+          updateConditionalFields
+        );
+      });
 
     document
       .querySelectorAll(".password-button")
       .forEach(function (button) {
         button.addEventListener("click", function () {
-          const input = document.getElementById(button.dataset.target);
+          const input = document.getElementById(
+            button.dataset.target
+          );
+
           const hidden = input.type === "password";
 
           input.type = hidden ? "text" : "password";
@@ -1447,43 +1377,53 @@
       const requiredFields = Array.from(
         form.querySelectorAll("[required]")
       ).filter(function (field) {
-        return field.offsetParent !== null;
+        return !field.disabled;
       });
 
-      const fieldNames = new Set();
-
-      requiredFields.forEach(function (field) {
-        fieldNames.add(
-          field.type === "radio" ? field.name : field.id
-        );
-      });
-
+      const groups = new Set();
       let completed = 0;
 
-      fieldNames.forEach(function (name) {
-        const radio = form.querySelector(
-          'input[type="radio"][name="' + name + '"]'
-        );
+      requiredFields.forEach(function (field) {
+        const key =
+          field.type === "radio"
+            ? "radio:" + field.name
+            : field.id;
 
-        if (radio) {
-          const checkedRadio = form.querySelector(
-            'input[type="radio"][name="' + name + '"]:checked'
+        groups.add(key);
+      });
+
+      groups.forEach(function (key) {
+        if (key.startsWith("radio:")) {
+          const name = key.replace("radio:", "");
+
+          const checked = form.querySelector(
+            'input[type="radio"][name="' +
+              name +
+              '"]:checked'
           );
 
-          if (checkedRadio) {
+          if (checked) {
             completed++;
           }
         } else {
-          const field = document.getElementById(name);
+          const field = document.getElementById(key);
 
-          if (field && String(field.value).trim() !== "") {
+          if (!field) {
+            return;
+          }
+
+          if (field.type === "checkbox") {
+            if (field.checked) {
+              completed++;
+            }
+          } else if (String(field.value).trim() !== "") {
             completed++;
           }
         }
       });
 
-      const percentage = fieldNames.size
-        ? Math.round((completed / fieldNames.size) * 100)
+      const percentage = groups.size
+        ? Math.round((completed / groups.size) * 100)
         : 0;
 
       progressBar.style.width = percentage + "%";
@@ -1526,8 +1466,16 @@
     form.addEventListener("submit", async function (event) {
       event.preventDefault();
 
+      updateConditionalFields();
+
       if (!form.checkValidity()) {
         form.reportValidity();
+
+        showStatus(
+          "Please complete all required fields and check every onboarding checklist item.",
+          "error"
+        );
+
         return;
       }
 
@@ -1539,29 +1487,17 @@
       submitButton.textContent = "Submitting...";
       formStatus.className = "status";
 
+      const submissionData = formToObject(form);
+
       try {
-        const response = await fetch(SCRIPT_URL, {
+        await fetch(SCRIPT_URL, {
           method: "POST",
+          mode: "no-cors",
           headers: {
             "Content-Type": "text/plain;charset=utf-8"
           },
-          body: JSON.stringify(formToObject(form))
+          body: JSON.stringify(submissionData)
         });
-
-        const responseText = await response.text();
-        let result;
-
-        try {
-          result = JSON.parse(responseText);
-        } catch {
-          throw new Error("The server returned an invalid response.");
-        }
-
-        if (result.success !== true) {
-          throw new Error(
-            result.message || "The submission could not be saved."
-          );
-        }
 
         showStatus(
           "The onboarding form was submitted successfully.",
@@ -1576,15 +1512,16 @@
         updateConditionalFields();
         updateProgress();
       } catch (error) {
-        console.error(error);
+        console.error("Submission error:", error);
 
         showStatus(
-          "The form could not be submitted. Please check the connection and try again.",
+          "The form could not be submitted. Please check your internet connection and try again.",
           "error"
         );
       } finally {
         submitButton.disabled = false;
-        submitButton.textContent = "Submit Onboarding Form";
+        submitButton.textContent =
+          "Submit Onboarding Form";
       }
     });
 
